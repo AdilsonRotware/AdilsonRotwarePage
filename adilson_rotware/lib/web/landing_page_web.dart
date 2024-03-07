@@ -2,6 +2,7 @@ import 'package:adilson_rotware/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LandingPageWeb extends StatefulWidget {
   const LandingPageWeb({super.key});
@@ -277,29 +278,26 @@ class _LandingPageWebState extends State<LandingPageWeb> {
           Container(
             height: heightDevice,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SansBold("Contacte-me", 40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        SizedBox(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SansBold("Contacte-me", 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextForm(
+                        width: 350,
+                        heading: "Primeiro Nome",
+                        hitText: "Por favor insira o seu primeiro nome!",
+                      ),
+                      SizedBox(height: 15),
+                      TextForm(
                           width: 350,
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.teal))),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ],
-            ),
+                          heading: "E-mail",
+                          hitText:
+                              "Por favor insira o seu endereço de e-mail!"),
+                    ],
+                  )
+                ]),
           ),
         ],
       ),
