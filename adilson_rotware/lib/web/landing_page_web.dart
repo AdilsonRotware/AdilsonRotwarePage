@@ -1,8 +1,8 @@
 import 'package:adilson_rotware/components.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LandingPageWeb extends StatefulWidget {
   const LandingPageWeb({super.key});
@@ -15,8 +15,37 @@ class _LandingPageWebState extends State<LandingPageWeb> {
   @override
   Widget build(BuildContext context) {
     var heightDevice = MediaQuery.of(context).size.height;
+    var widthDevice = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 72.0,
+              backgroundColor: Colors.white,
+              backgroundImage: AssetImage("assets/image.png"),
+            ),
+            SizedBox(height: 15.0),
+            SansBold("Adilson Rodrigues", 30.0),
+            SizedBox(height: 15.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  icon: SvgPicture.asset("assets/instagram.svg",
+                      color: Colors.black, width: 350),
+                  onPressed: () async {
+                    await launchUrl(
+                        Uri.parse("https://www.instagram.com/rotware"));
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
@@ -60,7 +89,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                           )),
                       padding: EdgeInsets.symmetric(
                           vertical: 10.0, horizontal: 20.0),
-                      child: SansBold("Olá, Eu sou", 15),
+                      child: SansBold("Olá, Eu sou", 15.0),
                     ),
                     SizedBox(height: 15.0),
                     SansBold("Adilson Rodrigues", 55.0),
@@ -69,7 +98,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                     Row(
                       children: [
                         Icon(Icons.email),
-                        SizedBox(width: 20),
+                        SizedBox(width: 20.0),
                         Sans("arodriguestito@gmail.com", 15.0),
                       ],
                     ),
@@ -85,7 +114,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                     Row(
                       children: [
                         Icon(Icons.location_pin),
-                        SizedBox(width: 20),
+                        SizedBox(width: 20.0),
                         Sans("Luanda, Luanda, Angola", 15.0),
                       ],
                     )
@@ -114,13 +143,13 @@ class _LandingPageWebState extends State<LandingPageWeb> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset("assets/web.jpg", height: heightDevice / 1.7),
+                Image.asset("assets/web.jpg", height: widthDevice / 1.9),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SansBold("Sobre mim", 40.0),
-                    SizedBox(height: 15),
+                    SizedBox(height: 15.0),
                     Sans(
                         "Olá! Sou Adilson Rodrigues Tito, um entusiasta da programação. ",
                         15),
@@ -130,7 +159,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                     Sans(
                         "Tenho dedicado minha carreira ao aprimoramento constante das minhas habilidades tecnológicas.",
                         15),
-                    SizedBox(height: 10),
+                    SizedBox(height: 10.0),
                     Row(
                       children: [
                         Container(
@@ -154,7 +183,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                           padding: EdgeInsets.all(7.0),
                           child: Sans("Flutter", 15.0),
                         ),
-                        SizedBox(height: 7),
+                        SizedBox(height: 7.0),
                         Container(
                           decoration: BoxDecoration(
                               border: Border.all(
@@ -165,7 +194,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                           padding: EdgeInsets.all(7.0),
                           child: Sans("Android", 15.0),
                         ),
-                        SizedBox(height: 7),
+                        SizedBox(height: 7.0),
                         Container(
                           decoration: BoxDecoration(
                               border: Border.all(
@@ -200,74 +229,23 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SansBold("O que faço?", 40),
+                SansBold("O que faço?", 40.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)),
-                      shadowColor: Colors.tealAccent,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              "assets/webL.png",
-                              height: 200,
-                              width: 200,
-                            ),
-                            SizedBox(height: 10),
-                            SansBold("Desenvolvimento Web", 15.0),
-                          ],
-                        ),
-                      ),
+                    AnimatedCardWeb(
+                      imagePath: "assets/webL.png",
+                      text: "Desenvolvimento Web",
                     ),
-                    Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)),
-                      shadowColor: Colors.tealAccent,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              "assets/app.png",
-                              height: 200,
-                              width: 200,
-                              fit: BoxFit.contain,
-                            ),
-                            SizedBox(height: 10),
-                            SansBold("Desenvolvimento de Aplicativos", 15.0),
-                          ],
-                        ),
-                      ),
+                    AnimatedCardWeb(
+                      imagePath: "assets/app.png",
+                      text: "Desenvolvimento De Aplicativos",
+                      fit: BoxFit.contain,
+                      reverse: true,
                     ),
-                    Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)),
-                      shadowColor: Colors.tealAccent,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              "assets/firebase.png",
-                              height: 200,
-                              width: 200,
-                              fit: BoxFit.contain,
-                            ),
-                            SizedBox(height: 10),
-                            SansBold("Desenvolvimento Back-End", 15.0),
-                          ],
-                        ),
-                      ),
+                    AnimatedCardWeb(
+                      imagePath: "assets/firebase.png",
+                      text: "Desenvolvimento Back-end",
                     ),
                   ],
                 )
@@ -278,27 +256,58 @@ class _LandingPageWebState extends State<LandingPageWeb> {
           Container(
             height: heightDevice,
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SansBold("Contacte-me", 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TextForm(
-                        width: 350,
-                        heading: "Primeiro Nome",
-                        hitText: "Por favor insira o seu primeiro nome!",
-                      ),
-                      SizedBox(height: 15),
-                      TextForm(
-                          width: 350,
-                          heading: "E-mail",
-                          hitText:
-                              "Por favor insira o seu endereço de e-mail!"),
-                    ],
-                  )
-                ]),
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SansBold("Contacte-me", 40.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextForm(
+                      width: 350.0,
+                      heading: "Primeiro Nome",
+                      hintText: "Por favor insira o seu primeiro nome!",
+                    ),
+                    SizedBox(height: 15.0),
+                    TextForm(
+                        width: 350.0,
+                        heading: "E-mail",
+                        hintText: "Por favor insira o seu endereço de e-mail!"),
+                  ],
+                ),
+                Column(
+                  children: [
+                    TextForm(
+                        heading: "Ultimo Nome",
+                        width: 350.0,
+                        hintText: "Por favor seu Ultímo Nome"),
+                    SizedBox(height: 15.0),
+                    TextForm(
+                      width: 350.0,
+                      hintText: "Por favor digite o número de Telefone:",
+                      heading: "Número de telefone",
+                    ),
+                  ],
+                ),
+                TextForm(
+                  heading: "Messagem",
+                  width: widthDevice / 1.5,
+                  hintText: "Por favor insira a sua mensagem",
+                  maxLines: 10,
+                ),
+                MaterialButton(
+                  elevation: 20.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  height: 60.0,
+                  minWidth: 200.0,
+                  color: Colors.tealAccent,
+                  child: SansBold("Enviar", 20.0),
+                  onPressed: () {},
+                ),
+              ],
+            ),
           ),
+          SizedBox(height: 20.0),
         ],
       ),
     );
